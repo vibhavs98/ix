@@ -247,6 +247,7 @@ import ProgressIndicatorLinearStatus from '../preview-examples/progress-indicato
 import ProgressIndicatorCircularSizes from '../preview-examples/progress-indicator-circular-sizes';
 import ProgressIndicatorCircularStatus from '../preview-examples/progress-indicator-circular-status';
 import ProgressIndicatorCircular from '../preview-examples/progress-indicator-circular';
+import PvwViewer from '../preview-examples/pvw-viewer';
 
 @NgModule({
   declarations: [
@@ -513,6 +514,7 @@ import ProgressIndicatorCircular from '../preview-examples/progress-indicator-ci
     ProgressIndicatorCircularSizes,
     ProgressIndicatorCircularStatus,
     ProgressIndicatorCircular,
+    PvwViewer,
   ],
   imports: [
     BrowserModule,

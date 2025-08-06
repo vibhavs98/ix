@@ -1369,6 +1369,11 @@ export const routes: Routes = [
             (m) => m.default
           ),
       },
+      {
+        path: 'pvw-viewer',
+        loadComponent: () =>
+          import('../preview-examples/pvw-viewer').then((m) => m.default),
+      },
     ],
   },
 ];

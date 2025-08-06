@@ -235,6 +235,7 @@ import ProgressIndicatorLinearSizes from './preview-examples/progress-indicator-
 import ProgressIndicatorCircularSizes from './preview-examples/progress-indicator-circular-sizes.vue';
 import ProgressIndicatorCircular from './preview-examples/progress-indicator-circular.vue';
 import ProgressIndicator from './preview-examples/progress-indicator.vue';
+import PvwViewer from './preview-examples/pvw-viewer.vue';
 
 const routes: any = {
   '/': App,
@@ -464,6 +465,7 @@ const routes: any = {
   '/preview/progress-indicator-circular-sizes': ProgressIndicatorCircularSizes,
   '/preview/progress-indicator-circular': ProgressIndicatorCircular,
   '/preview/progress-indicator': ProgressIndicator,
+  '/preview/pvw-viewer': PvwViewer,
 };
 
 const currentPath = ref(window.location.pathname);

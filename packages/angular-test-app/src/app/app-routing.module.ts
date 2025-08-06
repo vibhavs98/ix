@@ -238,6 +238,7 @@ import VerticalTabs from '../preview-examples/vertical-tabs';
 import VerticalTabsWithAvatar from '../preview-examples/vertical-tabs-with-avatar';
 import Workflow from '../preview-examples/workflow';
 import WorkflowVertical from '../preview-examples/workflow-vertical';
+import PvwViewer from '../preview-examples/pvw-viewer';
 
 const routes: Routes = [
   {
@@ -1058,6 +1059,10 @@ const routes: Routes = [
       {
         path: 'progress-indicator-circular',
         component: ProgressIndicatorCircular,
+      },
+      {
+        path: 'pvw-viewer',
+        component: PvwViewer,
       },
     ],
   },
