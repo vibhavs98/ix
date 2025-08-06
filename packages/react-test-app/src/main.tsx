@@ -18,6 +18,7 @@ import AboutAndLegal from './preview-examples/about-and-legal';
 import ActionCard from './preview-examples/action-card';
 import AddIcons from './preview-examples/add-icons';
 import AgGrid from './preview-examples/aggrid';
+import PvwViewer from './preview-examples/pvw-viewer';
 import Application from './preview-examples/application';
 import ApplicationAppSwitch from './preview-examples/application-app-switch';
 import ApplicationBreakpoints from './preview-examples/application-breakpoints';
@@ -246,6 +247,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/preview/action-card" element={<ActionCard />} />
         <Route path="/preview/add-icons" element={<AddIcons />} />
         <Route path="/preview/aggrid" element={<AgGrid />} />
+        <Route path="/preview/pvw-viewer" element={<PvwViewer />} />
         <Route path="/preview/application" element={<Application />} />
         <Route
           path="/preview/application-breakpoints"

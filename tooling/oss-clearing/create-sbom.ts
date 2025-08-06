@@ -68,15 +68,23 @@ async function resolveComponentData(
   packageName: string,
   version: string
 ): Promise<any> {
-  return new Promise((resolve) => {
-    const { stdout } = spawnSync('pnpm', [
+  return new Promise((resolve, reject) => {
+    const result = spawnSync('pnpm', [
       'v',
       '--json',
       '--long',
       `${packageName}@${version}`,
-    ]);
+    ], {
+      shell: true,
+    });
 
-    resolve(JSON.parse(stdout.toString()));
+    if (result.error || !result.stdout) {
+      console.error(`Failed to run pnpm view for ${packageName}@${version}:`, result.error || result.stderr?.toString());
+      reject(new Error(`Failed to get package info for ${packageName}@${version}`));
+      return;
+    }
+
+    resolve(JSON.parse(result.stdout.toString()));
   });
 }
 
@@ -101,17 +109,30 @@ class CustomPUrlFactory extends CDX.Factories.PackageUrlFactory {
 }
 
 async function createSBom(packageName: string) {
-  const { stdout } = spawnSync('pnpm', ['ls', '--json', '--long'], {
+  const result = spawnSync('pnpm', ['ls', '--json', '--long'], {
     cwd: path.join(__dirname, 'node_modules', packageName),
+    shell: true,
   });
 
-  let [npmJson] = JSON.parse(stdout.toString());
+  if (result.error || !result.stdout) {
+    console.error(`Failed to run pnpm ls for ${packageName}:`, result.error || result.stderr?.toString());
+    throw new Error(`Failed to get dependencies for ${packageName}`);
+  }
+
+  let [npmJson] = JSON.parse(result.stdout.toString());
 
   if (packageName === '@siemens/ix-angular') {
-    const { stdout } = spawnSync('pnpm', ['ls', '--json', '--long'], {
+    const result2 = spawnSync('pnpm', ['ls', '--json', '--long'], {
       cwd: path.join(npmJson.path, '..'),
+      shell: true,
     });
-    const [npmJsonParent] = JSON.parse(stdout.toString());
+    
+    if (result2.error || !result2.stdout) {
+      console.error(`Failed to run pnpm ls for ${packageName} parent:`, result2.error || result2.stderr?.toString());
+      throw new Error(`Failed to get parent dependencies for ${packageName}`);
+    }
+    
+    const [npmJsonParent] = JSON.parse(result2.stdout.toString());
     npmJson = npmJsonParent;
   }
 
